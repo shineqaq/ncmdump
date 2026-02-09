@@ -54,7 +54,7 @@ NeteaseMusicMetadata::~NeteaseMusicMetadata()
     cJSON_Delete(mRaw);
 }
 
-NeteaseMusicMetadata::NeteaseMusicMetadata(std:string &rawMetaData, cJSON *raw)
+NeteaseMusicMetadata::NeteaseMusicMetadata(std::string &rawMetaData, cJSON *raw)
 {
     if (!raw)
     {
