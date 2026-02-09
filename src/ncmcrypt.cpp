@@ -54,12 +54,14 @@ NeteaseMusicMetadata::~NeteaseMusicMetadata()
     cJSON_Delete(mRaw);
 }
 
-NeteaseMusicMetadata::NeteaseMusicMetadata(cJSON *raw)
+NeteaseMusicMetadata::NeteaseMusicMetadata(std:string &rawData, cJSON *raw)
 {
     if (!raw)
     {
         return;
     }
+
+    mComment = rawData;
 
     cJSON *swap;
     int artistLen, i;
@@ -241,9 +243,9 @@ void NeteaseCrypt::FixMetadata()
         tag->setTitle(TagLib::String(mMetaData->name(), TagLib::String::UTF8));
         tag->setArtist(TagLib::String(mMetaData->artist(), TagLib::String::UTF8));
         tag->setAlbum(TagLib::String(mMetaData->album(), TagLib::String::UTF8));
+        tag->setComment(TagLib::String(mMetaData->comment(), TagLib::String::UTF8));
     }
 
-    // tag->setComment(TagLib::String("Create by taurusxin/ncmdump.", TagLib::String::UTF8));
 
     audioFile->save();
     audioFile->~File();
@@ -381,9 +383,9 @@ NeteaseCrypt::NeteaseCrypt(std::string const &path)
         // escape `music:`
         modifyDecryptData = std::string(modifyDecryptData.begin() + 6, modifyDecryptData.end());
 
-        // std::cout << modifyDecryptData << std::endl;
+        std::cout << modifyDecryptData << std::endl;
 
-        mMetaData = new NeteaseMusicMetadata(cJSON_Parse(modifyDecryptData.c_str()));
+        mMetaData = new NeteaseMusicMetadata(modifyData, cJSON_Parse(modifyDecryptData.c_str()));
     }
 
     // skip crc32 & image version

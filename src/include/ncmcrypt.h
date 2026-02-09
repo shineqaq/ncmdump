@@ -15,6 +15,7 @@ private:
 	std::string mArtist;
 	std::string mFormat;
 	std::string mName;
+	std::string mComment;
 	int mDuration;
 	int mBitrate;
 
@@ -28,6 +29,7 @@ public:
     const std::string& album() const { return mAlbum; }
     const std::string& artist() const { return mArtist; }
     const std::string& format() const { return mFormat; }
+    const std::string& comment() const { return mComment; }
     const int duration() const { return mDuration; }
     const int bitrate() const { return mBitrate; }
 
