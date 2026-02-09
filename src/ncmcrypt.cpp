@@ -54,14 +54,14 @@ NeteaseMusicMetadata::~NeteaseMusicMetadata()
     cJSON_Delete(mRaw);
 }
 
-NeteaseMusicMetadata::NeteaseMusicMetadata(std:string &rawData, cJSON *raw)
+NeteaseMusicMetadata::NeteaseMusicMetadata(std:string &rawMetaData, cJSON *raw)
 {
     if (!raw)
     {
         return;
     }
 
-    mComment = rawData;
+    mComment = rawMetaData;
 
     cJSON *swap;
     int artistLen, i;
