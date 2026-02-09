@@ -23,7 +23,7 @@ private:
 	cJSON* mRaw;
 
 public:
-	NeteaseMusicMetadata(std::string &data, cJSON*);
+	NeteaseMusicMetadata(std::string&, cJSON*);
 	~NeteaseMusicMetadata();
     const std::string& name() const { return mName; }
     const std::string& album() const { return mAlbum; }
