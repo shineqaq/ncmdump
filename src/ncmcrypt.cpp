@@ -369,11 +369,14 @@ NeteaseCrypt::NeteaseCrypt(std::string const &path)
             modifyData[i] ^= 0x63;
         }
 
+        std::string rawData;
         std::string swapModifyData;
         std::string modifyOutData;
         std::string modifyDecryptData;
 
-        swapModifyData = std::string(modifyData.begin() + 22, modifyData.end());
+        rawData = std::string(modifyData.begin(), modifyData.end());
+
+        swapModifyData = std::string(rawData.begin() + 22, rawData.end());
 
         // escape `163 key(Don't modify):`
         Base64::Decode(swapModifyData, modifyOutData);
@@ -385,7 +388,7 @@ NeteaseCrypt::NeteaseCrypt(std::string const &path)
 
         std::cout << modifyDecryptData << std::endl;
 
-        mMetaData = new NeteaseMusicMetadata(modifyData, cJSON_Parse(modifyDecryptData.c_str()));
+        mMetaData = new NeteaseMusicMetadata(rawData, cJSON_Parse(modifyDecryptData.c_str()));
     }
 
     // skip crc32 & image version
