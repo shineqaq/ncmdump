@@ -374,6 +374,7 @@ NeteaseCrypt::NeteaseCrypt(std::string const &path)
         std::string modifyOutData;
         std::string modifyDecryptData;
 
+        // raw tag
         rawData = std::string(modifyData.begin(), modifyData.end());
 
         swapModifyData = std::string(rawData.begin() + 22, rawData.end());
